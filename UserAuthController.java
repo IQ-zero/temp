@@ -100,6 +100,9 @@ public class UserAuthController {
             Main.debug("UserAuthController", "User registration failed due to invalid username format.");
             return;
         }
+
+
+
         // Email validation
         String email = emailField.getText();
         if (!email.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
@@ -109,6 +112,9 @@ public class UserAuthController {
             Main.debug("UserAuthController", "User registration failed due to invalid email format.");
             return;
         }
+
+
+
         // Password validation
         String password = passwordField.getText();
         if (password.length() < 8 ||
@@ -182,14 +188,12 @@ public class UserAuthController {
         if (guest != null) {
             Main.debug("UserAuthController", "Guest registration successful!");
             Session.setCurrentUser(guest);
-
             // Show success message to the user
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Registration Successful");
             successAlert.setHeaderText(null);
             successAlert.setContentText("Guest registration was successful! Welcome, " + guest.getFullName() + "!");
             successAlert.showAndWait();
-
             redirectToMainView(event);
         } else {
             Main.debug("UserAuthController", "Guest registration failed. Please check your details.");
@@ -212,6 +216,12 @@ public class UserAuthController {
         if (accommodation != null) {
             Main.debug("UserAuthController", "Accommodation registration successful!");
             Session.setCurrentUser(accommodation);
+            // Show success message to the user
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Registration Successful");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Accommodation registration was successful! Welcome, " + accommodation.getAccommodationName() + "!");
+            successAlert.showAndWait();
             redirectToMainView(event);
         } else {
             Main.debug("UserAuthController", "Accommodation registration failed. Please check your details.");
